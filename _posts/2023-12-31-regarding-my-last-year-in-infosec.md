@@ -132,7 +132,7 @@ I stayed at @drw0if's home <mark class="hltr-orange">for 4 days</mark>, that Fri
 The conference itself was really great, lots of top-notch talks and skilled people there. I've spent most of the time with the Shielder crew that i've met there and it was a really good day.
 The day after I decided to come back home to rest a bit after near <mark class="hltr-orange">6 months</mark> that was away from it.
 
-![From the Orange Tsai talk. What a blast](/images/2023-recap/IMG_9729.png)
+![From the Orange Tsai talk. What a blast](/images/2023-recap/IMG_0848.png)
 *From the Orange Tsai talk. What a blast*
 
 ## Slowdown or split like atoms in an a-bomb
