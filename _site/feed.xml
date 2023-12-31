@@ -1,9 +1,347 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-08-29T21:03:50+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">maitai blog’s</title><subtitle>BSc Computer Science Engineering   Studying</subtitle><entry><title type="html">Golf Jail</title><link href="http://localhost:4000/2023/08/29/sekai23-golf-jail.html" rel="alternate" type="text/html" title="Golf Jail" /><published>2023-08-29T00:00:00+02:00</published><updated>2023-08-29T00:00:00+02:00</updated><id>http://localhost:4000/2023/08/29/sekai23-golf-jail</id><content type="html" xml:base="http://localhost:4000/2023/08/29/sekai23-golf-jail.html">&lt;h1 id=&quot;golf-jail&quot;&gt;Golf Jail&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-31T14:12:52+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">maitai’s blog</title><subtitle>BSc Computer Science Engineering   Studying</subtitle><entry><title type="html">My last year in infosec</title><link href="http://localhost:4000/2023/12/31/regarding-my-last-year-in-infosec.html" rel="alternate" type="text/html" title="My last year in infosec" /><published>2023-12-31T00:00:00+01:00</published><updated>2023-12-31T00:00:00+01:00</updated><id>http://localhost:4000/2023/12/31/regarding-my-last-year-in-infosec</id><content type="html" xml:base="http://localhost:4000/2023/12/31/regarding-my-last-year-in-infosec.html">&lt;h1 id=&quot;regarding-my-last-year-in-information-security&quot;&gt;Regarding my last year in information security&lt;/h1&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;I hope you like golfing ⛳🏌️⛳🏌️&lt;/code&gt; 
-Stats : 16 solves / 475 pts 
-Difficulty: ⭐⭐⭐⭐
-Author: strellic&lt;/p&gt;
+&lt;p&gt;Since the end of the year is approaching i would like to do a recap of what i’ve did in the last year. I’ve always wanted to do this kind of blog post however i’m a bit lazy and i’ve never found the will do to it, but here we are.
+I hope this is not to long or boring to read, i just wanted to share my personal experience.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-beginning&quot;&gt;The beginning&lt;/h2&gt;
+
+&lt;p&gt;As far as i can remember i’ve started seriously studying web security in my spare time around &lt;mark class=&quot;hltr-orange&quot;&gt;August 2022&lt;/mark&gt;. Honestly i don’t know why i’ve choose to start with web security, maybe it was just the thing that i’ve did before like HTB or TryHackMe that lead me toward this topic or maybe was the fact that at the beginning i wasn’t aware of other kind of fields like binary exploitation since i was (and i am) a complete noob.&lt;/p&gt;
+
+&lt;p&gt;But back to the story, one day i decided to try the &lt;mark class=&quot;hltr-orange&quot;&gt;Portswigger Web Security Academy.&lt;/mark&gt; Searching online it turns out that this was very well done, and teaches lots of interesting and useful things. I was really skeptical at first, but i’ve decided to give it a try the same.&lt;/p&gt;
+
+&lt;p&gt;I think that this was one of the best decision ever made. The Academy is a goldmine for everyone who wants to learn, or to improve, web security skills. 
+After reading a couple of resources and doing the labs i was in love with the platform.  I was literally spending my whole free time on the Portswigger Academy and i was learning a lot. Every day i was learning new attacks, new concepts and new techniques. It was amazing.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/images/2023-recap/IMG_9108.png&quot; alt=&quot;Me doing some OAuth labs on Portswigger academy&quot; width=&quot;700&quot; height=&quot;500&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;em&gt;Me doing some OAuth labs on Portswigger academy&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;In a couple of month i was near the end of the learning path. I was really thrilled that i’ve learned tons of things, but i felt that something was missing. I was really satisfied by the Portswigger experience, but i wanted more. I wanted to jump straight into the action, and use all the shiny new techniques learned.&lt;/p&gt;
+
+&lt;p&gt;This was the time that i’ve decided to start playing CTF, which was one of my hidden dream.&lt;/p&gt;
+
+&lt;h2 id=&quot;rubi-di-cubrik&quot;&gt;Rubi di Cubrik&lt;/h2&gt;
+
+&lt;p&gt;At the beginning i was playing alone. Who hasn’t done it? It’s common in the CTF space to play alone just because you cannot find people to play with or just because you want it.
+I was in the first category, i really wanted to play alongside other people, because i think that is fun to create connection and memories with others.
+Then, one day after playing the TeamItaly2022 CTF i was asking in the discord if someone was looking for a web player. Someone, surprisingly, answer me back that he was playing in a small team were everyone was new to CTFs and if i wanted to i can join them.
+The team name was &lt;mark class=&quot;hltr-orange&quot;&gt;Rubi di Cubrik&lt;/mark&gt;.&lt;/p&gt;
+
+&lt;p&gt;I was really happy, because finally i’ve found someone to play with. From that point on, i’ve spent every weekend playing CTFs with them. The beginning was a real pain, i was thinking that the Academy was enough to be decent at CTFs, but i was completely wrong. I knew lots of theory but i was missing practice. It took me 3 or 4 CTFs just to get the first flag, the situation was a complete struggle. Here is were i first thought about &lt;mark class=&quot;hltr-orange&quot;&gt;how little i knew&lt;/mark&gt;. And also i was seeing other player solving challenges that i cannot even understand. So i just started asking myself how they can be so strong?&lt;/p&gt;
+
+&lt;p&gt;My research for my answers leads me towards asking other player for how much time they have been played or if it was some hidden technique to improve faster.
+The reality is that &lt;mark class=&quot;hltr-orange&quot;&gt;there&apos;s no hidden trick&lt;/mark&gt; , to be a better CTF player you need to play CTF. 
+That’s so simple, yet so complex. Playing CTF requires dealing with a lot of struggle, a lot of creative thinking and knowledge. I was amazed by all of this.
+Lots of players told me that the process of became more or less competitive is different for each one of us. One can take 5 years while another can take only 2 years of practice.
+After unveiling the truth behind the strength of other player, i decided to keep playing as much as i can. Even during the week.&lt;/p&gt;
+
+&lt;p&gt;I’ve decided to use my whole free time during autumn studying other CTF’s writeup and playing CTF during weekend.
+Also sometimes i was keeping the challenges that were released during the weekend and played them during the week.
+Sadly i was preparing my last university exam and my free time was not that much. So the process of learning was really slowed down.&lt;/p&gt;
+
+&lt;p&gt;During that time is were i decided to give a try to some internship application, just because i really want to test my skill with the real world, and to test if i can do it in a real world scenario.
+This is were i met &lt;mark class=&quot;hltr-orange&quot;&gt;Shielder crew&lt;/mark&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;shielder&quot;&gt;Shielder&lt;/h2&gt;
+
+&lt;p&gt;Since the beginning of my journey i was in touch with &lt;mark class=&quot;hltr-orange&quot;&gt;@BrunoModificato&lt;/mark&gt; , i was always &lt;del&gt;asking&lt;/del&gt;   annoying him about my doubt and questions. One day i was talking to him about any cool places to work in Italy. He told me about the agency where he was working for which was Shielder
+I didn’t knew them, so i decided to perform a bit of OSINT. 
+Their &lt;a href=&quot;https://www.shielder.com/blog/&quot;&gt;researches&lt;/a&gt;  were really cool and so i decided to email them regarding a summer internship with them.
+&lt;mark class=&quot;hltr-orange&quot;&gt;@Smaury92&lt;/mark&gt; answered me back and after presenting to me the whole company  i’ve got a couple of interview with &lt;mark class=&quot;hltr-orange&quot;&gt;@Th3Zer0&lt;/mark&gt; and they offered me the internship position.&lt;/p&gt;
+
+&lt;p&gt;I was really happy about it, it’s one of the moment i think i will remember for all my life. I was in front of a vending machine in the library in my town when i received the email regarding the job. I was amazed.
+At that time i had already completed my bachelor thesis and all my exams, so i was only thinking about moving to Pinerolo, were Shielder is.&lt;/p&gt;
+
+&lt;p&gt;Actually i was really happy about moving from my home town to do the internship. I was never been out of home for so long, since all my bachelor was done from remote due to COVID. The only problem was that Pinerolo and my home town are not that close. It’s like 500km away, it was literally an adventure. This didn’t scare me at all.&lt;/p&gt;
+
+&lt;p&gt;So a couple of months after the internship offer i was moving to Pinerolo, completely unaware of what it will come.
+I remember clearly the first time that i’ve been to Pinerolo. Like it was today. I get there after 7 hours of train, and the town is in the middle of nowhere. My first thought was &lt;mark class=&quot;hltr-orange&quot;&gt;&quot;were the fuck did i end up in?&quot;&lt;/mark&gt; 
+The day after my arrive i met the Shielder crew, and from that day i was officially starting my first internship in information security.
+Thinking about it right now, it was one of the best decision i have ever made.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/images/2023-recap/IMG_9729.png&quot; alt=&quot;Shielder belldoor in Pinerolo&quot; width=&quot;700&quot; height=&quot;500&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;em&gt;Shielder belldoor in Pinerolo&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;fibonhack&quot;&gt;fibonhack&lt;/h2&gt;
+
+&lt;p&gt;The time was flying in Pinerolo. I was immediately put in the middle of the action at Shielder, and my skill testing against real world targets was really profitable. I was learning new things, facing new difficulties and bouncing thoughts with other skilled hackers.
+I also met a lot of wonderful people there. The Shielder crew is full of amazing people, with which i spent most of my time out of work.
+I have forgot the count how much &lt;mark class=&quot;hltr-orange&quot;&gt;beers and tequilas&lt;/mark&gt; i had with &lt;mark class=&quot;hltr-orange&quot;&gt;@zi0Black&lt;/mark&gt;, &lt;mark class=&quot;hltr-orange&quot;&gt;@sevirus&lt;/mark&gt;, &lt;mark class=&quot;hltr-orange&quot;&gt;@fromveeko&lt;/mark&gt; and &lt;mark class=&quot;hltr-orange&quot;&gt;@not4nhacker&lt;/mark&gt;. It was really nice to spend time with them. Also was another occasion to learn something new about them. It was a 360 degrees internship.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/images/2023-recap/IMG_9927.png&quot; alt=&quot;Random landscape near Pinerolo&quot; width=&quot;700&quot; height=&quot;500&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;em&gt;Random landscape near Pinerolo&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;During that time i was still playing CTFs, but my team became mostly inactive. So i decided to,
+once again, starting looking into the discord of the various CTFs.
+One day i was annoying one player regarding the solve of a challenge. That player was &lt;mark class=&quot;hltr-orange&quot;&gt;@drw0if &lt;/mark&gt; from the fibonhack team.&lt;/p&gt;
+
+&lt;p&gt;We had a chat about the challenge, and about other things like the university and cool resources to learn more for improving in CTFs.
+I also ask him if the team was recuirting and he said that at the moment they weren’t open to new players. 
+I have enjoyed talking with him, so from that point on, in nearly every ctf i was annoying &lt;mark class=&quot;hltr-orange&quot;&gt;@drw0if&lt;/mark&gt; regarding the solve of the challenges and other stuff.
+This went on for a couple of  months, until one day, when he asked me to play &lt;mark class=&quot;hltr-orange&quot;&gt;m0lecon quals &lt;/mark&gt; with them. I was happy for it, i really wanted to play in an active team.&lt;/p&gt;
+
+&lt;p&gt;During that time also i have already found another big team to play with. But when @drw0if asked me to play with them i accepted immediately.
+Why? That’s beacause it’s an italian team and i thought that it was more fun to play together onsite in contrast with a full remote team.
+M0lecon quals was a blast, we ranked 10 and we qualified for the finals but i didn’t manage to get a single flag. It was a real pain, but i have enjoyed so much play with them. And i wanted more.&lt;/p&gt;
+
+&lt;p&gt;So that summer i decided to play every CTF that i can with them, no matter what. I played really a lot of CTFs during that period like Google23, corCTF, p4CTF, justCTF, codegate, zer0pts23 and many others.
+Even though i’ve done the best i can to take some flags it was a real struggle, but i’ve learned a lot and that was actually what i really wanted to.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/images/2023-recap/IMG_0256.png&quot; alt=&quot;Postviewer-v2 by @terjanq. I can still feel the pain&quot; width=&quot;700&quot; height=&quot;500&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;em&gt;Postviewer-v2 by @terjanq. I can still feel the pain&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The CTFs took most of my time during last summer, and in a blink of an eye was already the end of August. My internship was near the end and I need to make a decision. This was about continuing my studying with a master degree or not.
+And then &lt;mark class=&quot;hltr-orange&quot;&gt;September&lt;/mark&gt; come.&lt;/p&gt;
+
+&lt;h2 id=&quot;wake-me-up-when-september-ends&quot;&gt;Wake me up when September ends&lt;/h2&gt;
+
+&lt;p&gt;I don’t know i can properly explain what happened during September. All started with my decision to keep going on with my master degree, and since i was playing with fibonhack which most of them are in &lt;mark class=&quot;hltr-orange&quot;&gt;Pisa&lt;/mark&gt;, i decided to take my master there.
+I looked a lot at the courses there for several weeks before taking my decision, and they seems really well made.
+So i talk with the Shielder crew regarding my decision, they were (i hope) sad about my decision to go away, since we have created so many memories. After a couple of weeks i was moving away from Pinerolo to Pisa in search for an house to live in.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/images/2023-recap/IMG_0775.png&quot; alt=&quot;Me chilling in Pisa in front of the Battistero&quot; width=&quot;700&quot; height=&quot;500&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;em&gt;Me chilling in Pisa in front of the Battistero&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;I’ve never told that before, but finding an house in Italy is not that easy. Even when i was moving to Pinerolo it was really hard to find somewhere to live. It took me some time and a lot of luck.
+Now imagine searching an house in Pisa, which hosts 3 university, during the month where everyone was searching for an house.
+It’s a &lt;mark class=&quot;hltr-orange&quot;&gt;nightmare&lt;/mark&gt;. I moved late, i had all the time to find a proper house but i made my final decision too late, at the beginning i didn’t know why i was so hesitant.
+However i decided to try to take some reservation to visit some houses in Pisa, so i just kept searching on web sites for house renting in order to take some reservation.
+Once i’ve got a bunch of them, it was time to go to Pisa, the problem was that i didn’t know where to sleep. 
+Once again, @drw0if helped me. This time he said that he can give me a bed where i can sleep in his house. This actually &lt;mark class=&quot;hltr-orange&quot;&gt;saved my life&lt;/mark&gt; for those nefarious days.
+So once in Pisa, i’ve started going to my appointments for visiting the houses, and i was rejected by all of them.&lt;/p&gt;
+
+&lt;p&gt;Wait, rejected? Yes. Since there were a lot of people that were visiting the same house, the owner decided one of the visitors, based on some magical criteria which i don’t want to understand, and honestly i don’t care. 
+It was a complete mess and i was struggling a lot. The days were running by, the beginning of the master courses where approaching and i didn’t manage to find a house or a room or a bed to sleep in.
+I stayed at @drw0if’s home &lt;mark class=&quot;hltr-orange&quot;&gt;for 4 days&lt;/mark&gt;, that Friday we were moving to Rome for RomHack conference.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/images/2023-recap/IMG_0831.png&quot; alt=&quot;RomHack Badge&quot; width=&quot;700&quot; height=&quot;500&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;em&gt;RomHack Badge&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The conference itself was really great, lots of top-notch talks and skilled people there. I’ve spent most of the time with the Shielder crew that i’ve met there and it was a really good day.
+The day after I decided to come back home to rest a bit after near &lt;mark class=&quot;hltr-orange&quot;&gt;6 months&lt;/mark&gt; that was away from it.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/images/2023-recap/IMG_0848.png&quot; alt=&quot;From the Orange Tsai talk. What a blast&quot; width=&quot;700&quot; height=&quot;500&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;em&gt;From the Orange Tsai talk. What a blast&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;slowdown-or-split-like-atoms-in-an-a-bomb&quot;&gt;Slowdown or split like atoms in an a-bomb&lt;/h2&gt;
+
+&lt;p&gt;The homecoming give me the time to proper think on what to do next. I was completely overwhelmed by the entire situation. The master courses were starting and i’ve not found an home. I was blaming myself for not moving earlier, but i feel that the problem was something else.&lt;/p&gt;
+
+&lt;p&gt;I feel like a need some stop, some time for myself just doing nothing. During the course of the last months i’ve deep dived into information security for about &lt;mark class=&quot;hltr-orange&quot;&gt;80% of my time&lt;/mark&gt;, i just need a stop for a little amount of time.
+This was the first time that i felt that i was i a complete burnout, or something really similar.&lt;/p&gt;
+
+&lt;p&gt;So i decide, just to suspend everything. That’s it. The master degree, the house searching, everything. I decided to take a month for myself to recharge the batteries.&lt;/p&gt;
+
+&lt;p&gt;After a week at home it was time to go back to Pinerolo to take all my things that i’ve left there and to rest a bit there.
+So, 7 hours of train later, i was back in Pinerolo after 1 month that was away from it. 
+At this point i think that there is a special place for me, there is no other explanation.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/images/2023-recap/IMG_0741.png&quot; alt=&quot;Pinerolo skyline&quot; width=&quot;700&quot; height=&quot;500&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;em&gt;Pinerolo skyline&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;ifctf&quot;&gt;IFCTF&lt;/h2&gt;
+
+&lt;p&gt;I left Pinerolo on the 1st of October, and i came back home once again. October was really a busy month. It was exactly what i need to relieve my stress. 
+During the second week of October there was Internet Festival in Pisa. During this festival, the fibonhack team held the finals of the IFCTF. While i didn’t managed to write any challenges, i helped them &lt;mark class=&quot;hltr-orange&quot;&gt;organizing&lt;/mark&gt; the pre-ctf dinner and the after party with the qualified teams.
+So once again i went to Pisa, to stay there for a 3 or 4 days. This time the thing were beautiful, i completely give up on the idea of finding an house. I was not stressed at all, and most importantly i had nothing else to think besides the IFCTF.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/images/2023-recap/874752CA-94D1-4564-92D3-12B61C6DE0E8.JPG&quot; alt=&quot;Palazzo&quot; width=&quot;700&quot; height=&quot;500&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;em&gt;Palazzo&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The day of the CTF i’ve been with the whole fibonhack team in the same room for a countless amount of hours. It was the first time for me to meet the whole team in person, even though i’ve met some members of fibonhack before.&lt;/p&gt;
+
+&lt;p&gt;Stand on the other side of a CTF is amazing, the first thing is that you see the other struggle and you are there to watch. I think that this is actually really educational from the point of growing as player. I’ve never seen other player challenging in a CTF and i’ve never been to an onsite final. So the fact of observing other player helped me a lot. Like how they think and act. It was the same thing that i’ve did for several months in Pinerolo with Shielder.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/images/2023-recap/IMG_1065.png&quot; alt=&quot;Internet Festival flag in Pisa&quot; width=&quot;700&quot; height=&quot;500&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;em&gt;Internet Festival flag in Pisa&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;CTF aside these four days were really good. I’ve spent lot of time with other CTF player like &lt;mark class=&quot;hltr-orange&quot;&gt;@Goten&lt;/mark&gt;, &lt;mark class=&quot;hltr-orange&quot;&gt;@Barsa &lt;/mark&gt; and &lt;mark class=&quot;hltr-orange&quot;&gt;@b0n0b0&lt;/mark&gt; having beers and chilling in Pisa. 
+After the end of the CTF was time to, once again, going back home. This time i stayed there for quite a while.
+This time was needed to stay in a place for some time, because i’ve got an interview to do.&lt;/p&gt;
+
+&lt;h2 id=&quot;doyensec&quot;&gt;Doyensec&lt;/h2&gt;
+
+&lt;p&gt;We need to do a jump back in time. While travelling around Italy i always thought a lot about my decision on the master degree. Wheter to continue or not, if it was helpful to me or not. As the day goes by i felt that at the moment was not the best decision, i felt that maybe work can give me more opportunities of learning and growing as an hacker.
+So i started thinking about company that would offer me a winter internship. While searching around i’ve came across &lt;mark class=&quot;hltr-orange&quot;&gt;Doyensec&lt;/mark&gt;.&lt;/p&gt;
+
+&lt;p&gt;I’ve eared about Doyensec before to be honest. The first time that i was looking for an internship @BrunoModificato told me to ask them for an internship. After OSINTing them a bit and reading their cool &lt;a href=&quot;https://blog.doyensec.com/&quot;&gt;researches&lt;/a&gt; i decided to try with them, but unfortunately i got rejected.&lt;/p&gt;
+
+&lt;p&gt;This time was different, i took it as a challenge and i’ve got the Shielder exepriece in my bag. I really would challenge myself &lt;mark class=&quot;hltr-orange&quot;&gt;to crush the interviews&lt;/mark&gt;. So i decided to send my application to them. I received a response when i was on the train to Pisa for IFCTF. 
+It was the first step towards Doyensec, from that point i’ve done all the internship interview’s steps. 
+Then, the day after i’ve done my last technical call, i received the offer. I was in a hotel room in Pisa.  I was actually shaking. Once again, my skill testing against the real world went well.&lt;/p&gt;
+
+&lt;p&gt;The work would have started a couple of weeks later. I really felt that the stress went away in the exact moment of the offer.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/images/2023-recap/IMG_1370.png&quot; alt=&quot;Doyensec gift box&quot; width=&quot;700&quot; height=&quot;500&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;em&gt;Doyensec gift box&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;m0lecon-finals&quot;&gt;m0lecon finals&lt;/h2&gt;
+
+&lt;p&gt;I will do a fast forward here, because besides started working at Doyensec and qualify for LakeCTF finals i didn’t much during the month of November and the end of October.&lt;/p&gt;
+
+&lt;p&gt;As you can recall, we were qualified in May for &lt;mark class=&quot;hltr-orange&quot;&gt;m0lecon finals&lt;/mark&gt;, and it was approaching. It happened on the last day of November.
+I was really curious about it. Since i’ve never played an onsite CTF i was really attracted by the idea to play with other person all together in the same room.&lt;/p&gt;
+
+&lt;p&gt;So the whole fibonhack team moved to Turin. We rented an apartment for 10 people in the city center and we played for 24 hours straight together. Actually some of us had the hotel room paid by the pwnthem0le team, so everyone could rest well.&lt;/p&gt;
+
+&lt;p&gt;I was amazed by everything. 15 hackers playing together in the same room is an unexplainable experience, i really want to do it again and again.&lt;/p&gt;
+
+&lt;p&gt;As you can see from the public scoreboard we haven’t done a really good placement, but we’ve got a lot of fun. It was really nice to spend three days together hacking day and night and chilling in Turin. 
+It was a real team building experience. Also the conference was really interesting and it was even to talk with the challenges author at the after party.
+Regarding the web challenges, they were really gripping for me. I was sad that once again i was not able to take a single flag, i’ve lost so much time on one challenge.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/images/2023-recap/IMG_1535.png&quot; alt=&quot;&amp;quot;Top 5 if i recall correctly&amp;quot;&quot; width=&quot;700&quot; height=&quot;500&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;em&gt;“Top 5 if i recall correctly”&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;If you have read this blog-post in its entirety it seems that i’ve never take flag, and that is indeed true :rofl:&lt;/p&gt;
+&lt;h2 id=&quot;what-about-now&quot;&gt;What about now?&lt;/h2&gt;
+
+&lt;p&gt;At the moment i’m continuing my internship at Doyensec, and playing CTFs whenever i can.
+I’m trying to improve my skill every day. It’s not easy, but at least i try.&lt;/p&gt;
+
+&lt;p&gt;It took me one month to write this blogpost more or less. I’ve tried to talk about everything that happened to me related to information security, not just by mentioning CTFs and works but also talking about the emotions of the moment.&lt;/p&gt;
+
+&lt;p&gt;I would like to thank everyone either the ones that were with me from the start, either the ones that i met along the way and the ones who decided to bet and believe on me.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;img src=&quot;/images/2023-recap/18B380FA-7FE2-406F-80B0-180C2E4D351D.JPG&quot; alt=&quot;Nana korobi ya oki&quot; width=&quot;700&quot; height=&quot;500&quot; /&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;em&gt;Nana korobi ya oki&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</content><author><name></name></author><summary type="html">Regarding my last year in information security</summary></entry><entry><title type="html">SekaiCTF-23</title><link href="http://localhost:4000/2023/08/29/sekai23-golf-jail.html" rel="alternate" type="text/html" title="SekaiCTF-23" /><published>2023-08-29T00:00:00+02:00</published><updated>2023-08-29T00:00:00+02:00</updated><id>http://localhost:4000/2023/08/29/sekai23-golf-jail</id><content type="html" xml:base="http://localhost:4000/2023/08/29/sekai23-golf-jail.html">&lt;h1 id=&quot;web---golf-jail&quot;&gt;Web - Golf Jail&lt;/h1&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;I hope you like golfing ⛳🏌️⛳🏌️&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Stats : 16 solves / 475 pts&lt;/p&gt;
+
+&lt;p&gt;Difficulty: ⭐⭐⭐⭐&lt;/p&gt;
+
+&lt;p&gt;Author: strellic&lt;/p&gt;
 
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
@@ -64,7 +402,7 @@ But even this one won’t work due to strict CSP which states &lt;code class=&qu
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;In the writeup is explained perfectly how the payload is supposed to work, and how to craft an url that fits the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eval&lt;/code&gt; and can be used to execute javascript code&lt;/p&gt;
 
-&lt;p&gt;All we need to know for the challenge purposes was that if we supply an URL like this ```&lt;/p&gt;
+&lt;p&gt;All we need to know for the challenge purposes was that if we supply an URL like this&lt;/p&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://golfjail.chals.sekai.team/?xss=&amp;lt;svg/onload=eval(`&apos;`+URL)&amp;gt;#&apos;;console.log(1)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;The xss parameter will be less than 30 chars, and the URL will be valid syntax to be evaluated from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eval&lt;/code&gt; to achieve XSS&lt;/p&gt;
@@ -126,4 +464,4 @@ converted it back to its original value&lt;/p&gt;
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;The challenge was really fun to play and i’ve learn a lot of new things. As always strelli challs are a goldmine, definitely want to play the other challenge which is leakless-note in order to learn novel xs-leak technique&lt;/p&gt;</content><author><name></name></author><summary type="html">Golf Jail</summary></entry></feed>
+&lt;p&gt;The challenge was really fun to play and i’ve learn a lot of new things. As always strelli challs are a goldmine, definitely want to play the other challenge which is leakless-note in order to learn novel xs-leak technique&lt;/p&gt;</content><author><name></name></author><summary type="html">Web - Golf Jail</summary></entry></feed>
