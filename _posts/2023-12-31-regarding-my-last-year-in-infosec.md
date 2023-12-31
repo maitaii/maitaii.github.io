@@ -25,8 +25,9 @@ But back to the story, one day i decided to try the <mark class="hltr-orange">Po
 I think that this was one of the best decision ever made. The Academy is a goldmine for everyone who wants to learn, or to improve, web security skills. 
 After reading a couple of resources and doing the labs i was in love with the platform.  I was literally spending my whole free time on the Portswigger Academy and i was learning a lot. Every day i was learning new attacks, new concepts and new techniques. It was amazing.
 
-![Me doing some OAuth labs on Portswigger academy](/images/2023-recap/IMG_9108.png)
-*Me doing some OAuth labs on Portswigger academy*
+| ![Me doing some OAuth labs on Portswigger academy](/images/2023-recap/IMG_9108.png) |
+|:--:|
+| *Me doing some OAuth labs on Portswigger academy* |
 
 In a couple of month i was near the end of the learning path. I was really thrilled that i've learned tons of things, but i felt that something was missing. I was really satisfied by the Portswigger experience, but i wanted more. I wanted to jump straight into the action, and use all the shiny new techniques learned.
 
@@ -71,8 +72,9 @@ I remember clearly the first time that i've been to Pinerolo. Like it was today.
 The day after my arrive i met the Shielder crew, and from that day i was officially starting my first internship in information security.
 Thinking about it right now, it was one of the best decision i have ever made.
 
-![Shielder belldoor in Pinerolo](/images/2023-recap/IMG_9729.png)
-*Shielder belldoor in Pinerolo*
+| ![Shielder belldoor in Pinerolo](/images/2023-recap/IMG_9729.png) |
+|:--:|
+| *Shielder belldoor in Pinerolo* |
 
 ## fibonhack
 
@@ -80,8 +82,9 @@ The time was flying in Pinerolo. I was immediately put in the middle of the acti
 I also met a lot of wonderful people there. The Shielder crew is full of amazing people, with which i spent most of my time out of work.
 I have forgot the count how much <mark class="hltr-orange">beers and tequilas</mark> i had with <mark class="hltr-orange">@zi0Black</mark>, <mark class="hltr-orange">@sevirus</mark>, <mark class="hltr-orange">@fromveeko</mark> and <mark class="hltr-orange">@not4nhacker</mark>. It was really nice to spend time with them. Also was another occasion to learn something new about them. It was a 360 degrees internship.
 
-![Random landscape near Pinerolo](/images/2023-recap/IMG_9927.png)
-*Random landscape near Pinerolo*
+| ![Random landscape near Pinerolo](/images/2023-recap/IMG_9927.png) |
+|:--:|
+| *Random landscape near Pinerolo* |
 
 During that time i was still playing CTFs, but my team became mostly inactive. So i decided to,
 once again, starting looking into the discord of the various CTFs.
@@ -99,8 +102,9 @@ M0lecon quals was a blast, we ranked 10 and we qualified for the finals but i di
 So that summer i decided to play every CTF that i can with them, no matter what. I played really a lot of CTFs during that period like Google23, corCTF, p4CTF, justCTF, codegate, zer0pts23 and many others.
 Even though i've done the best i can to take some flags it was a real struggle, but i've learned a lot and that was actually what i really wanted to.
 
-![Postviewer-v2 by @terjanq. I can still feel the pain](/images/2023-recap/IMG_0256.png)
-*Postviewer-v2 by @terjanq. I can still feel the pain*
+| ![Postviewer-v2 by @terjanq. I can still feel the pain](/images/2023-recap/IMG_0256.png) |
+|:--:|
+| *Postviewer-v2 by @terjanq. I can still feel the pain* |
 
 The CTFs took most of my time during last summer, and in a blink of an eye was already the end of August. My internship was near the end and I need to make a decision. This was about continuing my studying with a master degree or not.
 And then <mark class="hltr-orange">September</mark> come.
@@ -111,8 +115,9 @@ I don't know i can properly explain what happened during September. All started 
 I looked a lot at the courses there for several weeks before taking my decision, and they seems really well made.
 So i talk with the Shielder crew regarding my decision, they were (i hope) sad about my decision to go away, since we have created so many memories. After a couple of weeks i was moving away from Pinerolo to Pisa in search for an house to live in.
 
-![Me chilling in Pisa in front of the Battistero](/images/2023-recap/IMG_0775.png)
-*Me chilling in Pisa in front of the Battistero*
+| ![Me chilling in Pisa in front of the Battistero](/images/2023-recap/IMG_0775.png) |
+|:--:|
+| *Me chilling in Pisa in front of the Battistero* |
 
 I've never told that before, but finding an house in Italy is not that easy. Even when i was moving to Pinerolo it was really hard to find somewhere to live. It took me some time and a lot of luck.
 Now imagine searching an house in Pisa, which hosts 3 university, during the month where everyone was searching for an house.
@@ -126,14 +131,16 @@ Wait, rejected? Yes. Since there were a lot of people that were visiting the sam
 It was a complete mess and i was struggling a lot. The days were running by, the beginning of the master courses where approaching and i didn't manage to find a house or a room or a bed to sleep in.
 I stayed at @drw0if's home <mark class="hltr-orange">for 4 days</mark>, that Friday we were moving to Rome for RomHack conference. 
 
-![RomHack Badge](/images/2023-recap/IMG_0831.png)
-*RomHack Badge*
+| ![RomHack Badge](/images/2023-recap/IMG_0831.png) |
+|:--:|
+| *RomHack Badge* |
 
 The conference itself was really great, lots of top-notch talks and skilled people there. I've spent most of the time with the Shielder crew that i've met there and it was a really good day.
 The day after I decided to come back home to rest a bit after near <mark class="hltr-orange">6 months</mark> that was away from it.
 
-![From the Orange Tsai talk. What a blast](/images/2023-recap/IMG_0848.png)
-*From the Orange Tsai talk. What a blast*
+| ![From the Orange Tsai talk. What a blast](/images/2023-recap/IMG_0848.png) |
+|:--:|
+| *From the Orange Tsai talk. What a blast* |
 
 ## Slowdown or split like atoms in an a-bomb
 
@@ -148,8 +155,9 @@ After a week at home it was time to go back to Pinerolo to take all my things th
 So, 7 hours of train later, i was back in Pinerolo after 1 month that was away from it. 
 At this point i think that there is a special place for me, there is no other explanation.
 
-![Pinerolo skyline](/images/2023-recap/IMG_0741.png)
-*Pinerolo skyline*
+| ![Pinerolo skyline](/images/2023-recap/IMG_0741.png) |
+|:--:|
+| *Pinerolo skyline* |
 
 ## IFCTF
 
@@ -157,15 +165,17 @@ I left Pinerolo on the 1st of October, and i came back home once again. October 
 During the second week of October there was Internet Festival in Pisa. During this festival, the fibonhack team held the finals of the IFCTF. While i didn't managed to write any challenges, i helped them <mark class="hltr-orange">organizing</mark> the pre-ctf dinner and the after party with the qualified teams.
 So once again i went to Pisa, to stay there for a 3 or 4 days. This time the thing were beautiful, i completely give up on the idea of finding an house. I was not stressed at all, and most importantly i had nothing else to think besides the IFCTF.
 
-![Palazzo](/images/2023-recap/874752CA-94D1-4564-92D3-12B61C6DE0E8.JPG)
-*Palazzo*
+| ![Palazzo](/images/2023-recap/874752CA-94D1-4564-92D3-12B61C6DE0E8.JPG) |
+|:--:|
+| *Palazzo* |
 
 The day of the CTF i've been with the whole fibonhack team in the same room for a countless amount of hours. It was the first time for me to meet the whole team in person, even though i've met some members of fibonhack before.
 
 Stand on the other side of a CTF is amazing, the first thing is that you see the other struggle and you are there to watch. I think that this is actually really educational from the point of growing as player. I've never seen other player challenging in a CTF and i've never been to an onsite final. So the fact of observing other player helped me a lot. Like how they think and act. It was the same thing that i've did for several months in Pinerolo with Shielder.
 
-![Internet Festival flag in Pisa](/images/2023-recap/IMG_1065.png)
-*Internet Festival flag in Pisa*
+| ![Internet Festival flag in Pisa](/images/2023-recap/IMG_1065.png) |
+|:--:|
+| *Internet Festival flag in Pisa* |
 
 CTF aside these four days were really good. I've spent lot of time with other CTF player like <mark class="hltr-orange">@Goten</mark>, <mark class="hltr-orange">@Barsa </mark> and <mark class="hltr-orange">@b0n0b0</mark> having beers and chilling in Pisa. 
 After the end of the CTF was time to, once again, going back home. This time i stayed there for quite a while.
@@ -185,8 +195,9 @@ Then, the day after i've done my last technical call, i received the offer. I wa
 
 The work would have started a couple of weeks later. I really felt that the stress went away in the exact moment of the offer.
 
-![Doyensec gift box](/images/2023-recap/IMG_1370.png)
-*Doyensec gift box*
+| ![Doyensec gift box](/images/2023-recap/IMG_1370.png) |
+|:--:|
+| *Doyensec gift box* |
 
 ## m0lecon finals
 
@@ -203,8 +214,9 @@ As you can see from the public scoreboard we haven't done a really good placemen
 It was a real team building experience. Also the conference was really interesting and it was even to talk with the challenges author at the after party.
 Regarding the web challenges, they were really gripping for me. I was sad that once again i was not able to take a single flag, i've lost so much time on one challenge.
 
-!["Top 5 if i recall correctly"](/images/2023-recap/IMG_1535.png)
-*"Top 5 if i recall correctly"*
+| !["Top 5 if i recall correctly"](/images/2023-recap/IMG_1535.png) |
+|:--:|
+| *"Top 5 if i recall correctly"* |
 
 If you have read this blog-post in its entirety it seems that i've never take flag, and that is indeed true :rofl:
 ## What about now?
@@ -217,8 +229,9 @@ It took me one month to write this blogpost more or less. I've tried to talk abo
 I would like to thank everyone either the ones that were with me from the start, either the ones that i met along the way and the ones who decided to bet and believe on me.
 
 
-![Nana korobi ya oki](/images/2023-recap/18B380FA-7FE2-406F-80B0-180C2E4D351D.JPG)
-*Nana korobi ya oki*
+| ![Nana korobi ya oki](/images/2023-recap/18B380FA-7FE2-406F-80B0-180C2E4D351D.JPG) |
+|:--:|
+| *Nana korobi ya oki* |
 
 
 
