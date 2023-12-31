@@ -26,6 +26,7 @@ I think that this was one of the best decision ever made. The Academy is a goldm
 After reading a couple of resources and doing the labs i was in love with the platform.  I was literally spending my whole free time on the Portswigger Academy and i was learning a lot. Every day i was learning new attacks, new concepts and new techniques. It was amazing.
 
 ![Me doing some OAuth labs on Portswigger academy](/images/2023-recap/IMG_9108.png)
+*Me doing some OAuth labs on Portswigger academy*
 
 In a couple of month i was near the end of the learning path. I was really thrilled that i've learned tons of things, but i felt that something was missing. I was really satisfied by the Portswigger experience, but i wanted more. I wanted to jump straight into the action, and use all the shiny new techniques learned.
 
@@ -71,6 +72,7 @@ The day after my arrive i met the Shielder crew, and from that day i was officia
 Thinking about it right now, it was one of the best decision i have ever made.
 
 ![Shielder belldoor in Pinerolo](/images/2023-recap/IMG_9729.png)
+*Shielder belldoor in Pinerolo*
 
 ## fibonhack
 
@@ -79,6 +81,7 @@ I also met a lot of wonderful people there. The Shielder crew is full of amazing
 I have forgot the count how much <mark class="hltr-orange">beers and tequilas</mark> i had with <mark class="hltr-orange">@zi0Black</mark>, <mark class="hltr-orange">@sevirus</mark>, <mark class="hltr-orange">@fromveeko</mark> and <mark class="hltr-orange">@not4nhacker</mark>. It was really nice to spend time with them. Also was another occasion to learn something new about them. It was a 360 degrees internship.
 
 ![Random landscape near Pinerolo](/images/2023-recap/IMG_9927.png)
+*Random landscape near Pinerolo*
 
 During that time i was still playing CTFs, but my team became mostly inactive. So i decided to,
 once again, starting looking into the discord of the various CTFs.
@@ -97,6 +100,7 @@ So that summer i decided to play every CTF that i can with them, no matter what.
 Even though i've done the best i can to take some flags it was a real struggle, but i've learned a lot and that was actually what i really wanted to.
 
 ![Postviewer-v2 by @terjanq. I can still feel the pain](/images/2023-recap/IMG_0256.png)
+*Postviewer-v2 by @terjanq. I can still feel the pain*
 
 The CTFs took most of my time during last summer, and in a blink of an eye was already the end of August. My internship was near the end and I need to make a decision. This was about continuing my studying with a master degree or not.
 And then <mark class="hltr-orange">September</mark> come.
@@ -108,6 +112,7 @@ I looked a lot at the courses there for several weeks before taking my decision,
 So i talk with the Shielder crew regarding my decision, they were (i hope) sad about my decision to go away, since we have created so many memories. After a couple of weeks i was moving away from Pinerolo to Pisa in search for an house to live in.
 
 ![Me chilling in Pisa in front of the Battistero](/images/2023-recap/IMG_0775.png)
+*Me chilling in Pisa in front of the Battistero*
 
 I've never told that before, but finding an house in Italy is not that easy. Even when i was moving to Pinerolo it was really hard to find somewhere to live. It took me some time and a lot of luck.
 Now imagine searching an house in Pisa, which hosts 3 university, during the month where everyone was searching for an house.
@@ -122,11 +127,13 @@ It was a complete mess and i was struggling a lot. The days were running by, the
 I stayed at @drw0if's home <mark class="hltr-orange">for 4 days</mark>, that Friday we were moving to Rome for RomHack conference. 
 
 ![RomHack Badge](/images/2023-recap/IMG_0831.png)
+*RomHack Badge*
 
 The conference itself was really great, lots of top-notch talks and skilled people there. I've spent most of the time with the Shielder crew that i've met there and it was a really good day.
 The day after I decided to come back home to rest a bit after near <mark class="hltr-orange">6 months</mark> that was away from it.
 
 ![From the Orange Tsai talk. What a blast](/images/2023-recap/IMG_9729.png)
+*From the Orange Tsai talk. What a blast*
 
 ## Slowdown or split like atoms in an a-bomb
 
@@ -142,6 +149,8 @@ So, 7 hours of train later, i was back in Pinerolo after 1 month that was away f
 At this point i think that there is a special place for me, there is no other explanation.
 
 ![Pinerolo skyline](/images/2023-recap/IMG_0741.png)
+*Pinerolo skyline*
+
 ## IFCTF
 
 I left Pinerolo on the 1st of October, and i came back home once again. October was really a busy month. It was exactly what i need to relieve my stress. 
@@ -149,12 +158,14 @@ During the second week of October there was Internet Festival in Pisa. During th
 So once again i went to Pisa, to stay there for a 3 or 4 days. This time the thing were beautiful, i completely give up on the idea of finding an house. I was not stressed at all, and most importantly i had nothing else to think besides the IFCTF.
 
 ![Palazzo](/images/2023-recap/874752CA-94D1-4564-92D3-12B61C6DE0E8.JPG)
+*Palazzo*
 
 The day of the CTF i've been with the whole fibonhack team in the same room for a countless amount of hours. It was the first time for me to meet the whole team in person, even though i've met some members of fibonhack before.
 
 Stand on the other side of a CTF is amazing, the first thing is that you see the other struggle and you are there to watch. I think that this is actually really educational from the point of growing as player. I've never seen other player challenging in a CTF and i've never been to an onsite final. So the fact of observing other player helped me a lot. Like how they think and act. It was the same thing that i've did for several months in Pinerolo with Shielder.
 
 ![Internet Festival flag in Pisa](/images/2023-recap/IMG_1065.png)
+*Internet Festival flag in Pisa*
 
 CTF aside these four days were really good. I've spent lot of time with other CTF player like <mark class="hltr-orange">@Goten</mark>, <mark class="hltr-orange">@Barsa </mark> and <mark class="hltr-orange">@b0n0b0</mark> having beers and chilling in Pisa. 
 After the end of the CTF was time to, once again, going back home. This time i stayed there for quite a while.
@@ -165,15 +176,17 @@ This time was needed to stay in a place for some time, because i've got an inter
 We need to do a jump back in time. While travelling around Italy i always thought a lot about my decision on the master degree. Wheter to continue or not, if it was helpful to me or not. As the day goes by i felt that at the moment was not the best decision, i felt that maybe work can give me more opportunities of learning and growing as an hacker.
 So i started thinking about company that would offer me a winter internship. While searching around i've came across <mark class="hltr-orange">Doyensec</mark>.
 
-I've eared about Doyensec before to be honest. The first time that i was looking for an internship @BrunoModificato told me to ask them for an internship. However i felt like the skill required for the job where to high for my level.
+I've eared about Doyensec before to be honest. The first time that i was looking for an internship @BrunoModificato told me to ask them for an internship. After OSINTing them a bit and reading their cool [researches](https://blog.doyensec.com/) i decided to try with them, but unfortunately i got rejected.
 
-This time was different, i took it as a challenge. I really would try <mark class="hltr-orange">if i can crush the interviews</mark>. So i decided to challenge myself, and i sent my application to them. I received a response when i was on the train to Pisa for IFCTF. 
+This time was different, i took it as a challenge and i've got the Shielder exepriece in my bag. I really would challenge myself <mark class="hltr-orange">to crush the interviews</mark>. So i decided to send my application to them. I received a response when i was on the train to Pisa for IFCTF. 
 It was the first step towards Doyensec, from that point i've done all the internship interview's steps. 
 Then, the day after i've done my last technical call, i received the offer. I was in a hotel room in Pisa.  I was actually shaking. Once again, my skill testing against the real world went well.
+
 
 The work would have started a couple of weeks later. I really felt that the stress went away in the exact moment of the offer.
 
 ![Doyensec gift box](/images/2023-recap/IMG_1370.png)
+*Doyensec gift box*
 
 ## m0lecon finals
 
@@ -191,6 +204,7 @@ It was a real team building experience. Also the conference was really interesti
 Regarding the web challenges, they were really gripping for me. I was sad that once again i was not able to take a single flag, i've lost so much time on one challenge.
 
 !["Top 5 if i recall correctly"](/images/2023-recap/IMG_1535.png)
+*"Top 5 if i recall correctly"*
 
 If you have read this blog-post in its entirety it seems that i've never take flag, and that is indeed true :rofl:
 ## What about now?
@@ -204,6 +218,7 @@ I would like to thank everyone either the ones that were with me from the start,
 
 
 ![Nana korobi ya oki](/images/2023-recap/18B380FA-7FE2-406F-80B0-180C2E4D351D.JPG)
+*Nana korobi ya oki*
 
 
 
