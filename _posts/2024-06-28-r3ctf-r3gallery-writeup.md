@@ -2,7 +2,7 @@
 
 layout: post
 
-title: "R3TCTF - r3gallery Writeup"
+title: "R3CTF - r3gallery Writeup"
 
 date: 2024-06-28
 
