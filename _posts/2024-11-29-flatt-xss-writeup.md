@@ -10,9 +10,8 @@ tag-name: xss client-side-desync charset-encoding
 
 ---
 
-# Flatt Security XSS Challenge - Writeup
 
- ![Image 1](/images/flatt-xss/Screenshot 2024-11-29 at 18.12.06.png)
+![Image 1](/images/flatt-xss/Screenshot 2024-11-29 at 18.12.06.png)
 
 Impossible not to play.
 

