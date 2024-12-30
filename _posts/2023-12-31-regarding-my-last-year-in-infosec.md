@@ -8,6 +8,8 @@ date: 2023-12-31
 
 tag-name: recap
 
+category: recap
+
 ---
 
 # Regarding my last year in information security
