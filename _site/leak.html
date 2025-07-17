@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple CSP Page</title>
+  <button type="button">Click Me</button>
+</head>
+<body>
+  <h1>Hello, World!</h1>
+
+  <script>
+    const shareData = {
+      title: "MDN",
+      text: "Learn web development on MDN!",
+      url: "https://webhook.site/4cc804ba-c3f3-4f17-9774-6093a1c33be5",
+    };
+    const btn = document.querySelector("button");
+    btn.addEventListener("click", async () => {
+      try {
+        await navigator.share(shareData);
+        resultPara.textContent = "MDN shared successfully";
+      } catch (err) {
+        resultPara.textContent = `Error: ${err}`;
+      }
+    })
+  </script>
+</body>
+</html>
